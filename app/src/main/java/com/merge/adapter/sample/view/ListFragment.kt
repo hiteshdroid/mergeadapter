@@ -54,9 +54,6 @@ class ListFragment : BaseFragment<ListFragment.ListViewHolder>() {
                 is SingleItem -> createSingleItemAdapter(it.item)
             }
         }
-        viewHolder?.apply {
-            adapter.notifyDataSetChanged()
-        }
     }
 
     private fun createSingleItemAdapter(item: ListItem) {
