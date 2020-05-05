@@ -8,12 +8,20 @@ import com.merge.adapter.sample.R
 import com.merge.adapter.sample.model.data.ListItem
 import com.merge.adapter.sample.view.adapter.base.HorizontalScrollListItemAdapter
 
-class HorizontalListAdapter(private val itemList: MutableList<ListItem>) :
+class HorizontalListAdapter :
     HorizontalScrollListItemAdapter<ListItem, HorizontalListAdapter.HorizontalListItemAdapterVH>() {
     class HorizontalListItemAdapterVH(view: View) : BaseVH(view) {
         val title: TextView = view.findViewById(R.id.title)
         val desc: TextView = view.findViewById(R.id.desc)
         val leadImage: ImageView = view.findViewById(R.id.imageView)
+    }
+
+    private var itemList: MutableList<ListItem> = mutableListOf()
+
+    fun setItems(itemList: MutableList<ListItem>) {
+        this.itemList.clear()
+        this.itemList.addAll(itemList)
+        notifyDataSetChanged()
     }
 
     override fun createViewHolder(view: View): HorizontalListItemAdapterVH {

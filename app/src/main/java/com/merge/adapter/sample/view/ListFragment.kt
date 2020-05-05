@@ -48,55 +48,56 @@ class ListFragment : BaseFragment<ListFragment.ListViewHolder>() {
     private fun populateAdapter(list: MutableList<BaseTemplate>) {
         list.forEach {
             when (it) {
-                is HorizontalList -> createHorizontalListAdapter(it.itemList)
-                is VerticalList -> createVerticalListAdapter(it.itemList)
-                is GridList -> createGridListAdapter(it.itemList)
-                is SingleItem -> createSingleItemAdapter(it.item)
+                is HorizontalList -> populateHorizontalList(it.itemList)
+                is VerticalList -> populateVerticalListAdapter(it.itemList)
+                is GridList -> populateGridListAdapter(it.itemList)
+                is SingleItem -> populateSingleItemAdapter(it.item)
             }
         }
     }
 
-    private fun createSingleItemAdapter(item: ListItem) {
+    private fun populateSingleItemAdapter(item: ListItem) {
         viewHolder?.apply {
-            val singleItemAdapter =
-                BannerItemAdapter()
-            singleItemAdapter.setItem(item)
-            adapter.addAdapter(singleItemAdapter)
+            bannerItemAdapter.setItem(item)
         }
     }
 
-    private fun createGridListAdapter(itemList: MutableList<ListItem>) {
+    private fun populateGridListAdapter(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
             viewHolder?.apply {
-                val gridListAdapter = GridListAdapter()
                 gridListAdapter.setData(itemList)
-                adapter.addAdapter(gridListAdapter)
             }
         }
     }
 
-    private fun createVerticalListAdapter(itemList: MutableList<ListItem>) {
+    private fun populateVerticalListAdapter(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
-            val verticalListAdapter = VerticalListAdapter()
             verticalListAdapter.setData(itemList)
-            adapter.addAdapter(verticalListAdapter)
         }
     }
 
-    private fun createHorizontalListAdapter(itemList: MutableList<ListItem>) {
+    private fun populateHorizontalList(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
             viewHolder?.apply {
-                val horizontalListAdapter = HorizontalListAdapter(itemList)
-                adapter.addAdapter(horizontalListAdapter)
+                horizontalListAdapter.setItems(itemList)
             }
         }
     }
 
-    class ListViewHolder(view: View) : BaseViewHolder(view) {
+    inner class ListViewHolder(view: View) : BaseViewHolder(view) {
         private val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         internal val adapter = MergeAdapter()
+        internal val horizontalListAdapter = HorizontalListAdapter()
+        internal val verticalListAdapter = VerticalListAdapter()
+        internal val bannerItemAdapter = BannerItemAdapter()
+        internal val gridListAdapter = GridListAdapter()
 
         init {
+            adapter.addAdapter(bannerItemAdapter)
+            adapter.addAdapter(horizontalListAdapter)
+            adapter.addAdapter(verticalListAdapter)
+            adapter.addAdapter(gridListAdapter)
+
             recyclerView.adapter = adapter
             val layoutManager = GridLayoutManager(
                 view.context,
