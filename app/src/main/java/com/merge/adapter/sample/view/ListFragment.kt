@@ -58,6 +58,8 @@ class ListFragment : BaseFragment<ListFragment.ListViewHolder>() {
 
     private fun populateSingleItemAdapter(item: ListItem) {
         viewHolder?.apply {
+            val bannerItemAdapter = BannerItemAdapter()
+            adapter.addAdapter(bannerItemAdapter)
             bannerItemAdapter.setItem(item)
         }
     }
@@ -65,24 +67,30 @@ class ListFragment : BaseFragment<ListFragment.ListViewHolder>() {
     private fun populateGridListAdapter(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
             viewHolder?.apply {
+                val gridListSectionAdapter = GridListSectionAdapter()
                 gridListSectionAdapter.setHeader(TitleItem("Grid Section Title"))
                 gridListSectionAdapter.setChildren(itemList)
+                adapter.addAdapter(gridListSectionAdapter)
             }
         }
     }
 
     private fun populateVerticalListAdapter(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
+            val verticalListSectionAdapter = VerticalListSectionAdapter()
             verticalListSectionAdapter.setHeader(TitleItem("Vertical List Header"))
             verticalListSectionAdapter.setChildren(itemList)
+            adapter.addAdapter(verticalListSectionAdapter)
         }
     }
 
     private fun populateHorizontalList(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
             viewHolder?.apply {
+                val horizontalListSectionAdapter = HorizontalListSectionAdapter()
                 horizontalListSectionAdapter.setHeader(TitleItem("Horizontal List Section Header"))
                 horizontalListSectionAdapter.setChildren(itemList)
+                adapter.addAdapter(horizontalListSectionAdapter)
             }
         }
     }
@@ -91,17 +99,7 @@ class ListFragment : BaseFragment<ListFragment.ListViewHolder>() {
         private val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         internal val adapter = MergeAdapter()
 
-        internal val bannerItemAdapter = BannerItemAdapter()
-        internal val horizontalListSectionAdapter = HorizontalListSectionAdapter()
-        internal val verticalListSectionAdapter = VerticalListSectionAdapter()
-        internal val gridListSectionAdapter = GridListSectionAdapter()
-
         init {
-            adapter.addAdapter(bannerItemAdapter)
-            adapter.addAdapter(horizontalListSectionAdapter)
-            adapter.addAdapter(verticalListSectionAdapter)
-            adapter.addAdapter(gridListSectionAdapter)
-
             recyclerView.adapter = adapter
 
             val layoutManager = CustomGridLayoutManager(
