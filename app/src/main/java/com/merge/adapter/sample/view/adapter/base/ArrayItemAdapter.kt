@@ -9,7 +9,7 @@ abstract class ArrayItemAdapter<T, K : BaseRecyclerViewAdapter.BaseVH> :
 
     private var listArray : MutableList<T>? = null
 
-    fun setData(list : MutableList<T>) {
+    fun setItems(list : MutableList<T>) {
         this.listArray = list
         notifyDataSetChanged()
     }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MergeAdapterSample</string>
+    <string name="dummy_title">Section Title</string>
 </resources>

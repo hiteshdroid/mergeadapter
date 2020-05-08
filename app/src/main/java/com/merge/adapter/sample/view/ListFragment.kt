@@ -9,10 +9,9 @@ import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.merge.adapter.sample.R
 import com.merge.adapter.sample.model.data.ListItem
-import com.merge.adapter.sample.view.adapter.BannerItemAdapter
-import com.merge.adapter.sample.view.adapter.GridListAdapter
-import com.merge.adapter.sample.view.adapter.HorizontalListAdapter
-import com.merge.adapter.sample.view.adapter.VerticalListAdapter
+import com.merge.adapter.sample.model.data.TitleItem
+import com.merge.adapter.sample.view.adapter.*
+import com.merge.adapter.sample.view.adapter.base.layoutmanager.CustomGridLayoutManager
 import com.merge.adapter.sample.view.base.CustomSpanSizeLookup
 import com.merge.adapter.sample.viewmodel.BaseTemplate
 import com.merge.adapter.sample.viewmodel.BaseTemplate.*
@@ -65,21 +64,24 @@ class ListFragment : BaseFragment<ListFragment.ListViewHolder>() {
     private fun populateGridListAdapter(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
             viewHolder?.apply {
-                gridListAdapter.setData(itemList)
+                gridListSectionAdapter.setHeader(TitleItem("Grid Section Title"))
+                gridListSectionAdapter.setChildren(itemList)
             }
         }
     }
 
     private fun populateVerticalListAdapter(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
-            verticalListAdapter.setData(itemList)
+            verticalListSectionAdapter.setHeader(TitleItem("Vertical List Header"))
+            verticalListSectionAdapter.setChildren(itemList)
         }
     }
 
     private fun populateHorizontalList(itemList: MutableList<ListItem>) {
         viewHolder?.apply {
             viewHolder?.apply {
-                horizontalListAdapter.setItems(itemList)
+                horizontalListSectionAdapter.setHeader(TitleItem("Horizontal List Section Header"))
+                horizontalListSectionAdapter.setChildren(itemList)
             }
         }
     }
@@ -87,23 +89,25 @@ class ListFragment : BaseFragment<ListFragment.ListViewHolder>() {
     inner class ListViewHolder(view: View) : BaseViewHolder(view) {
         private val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         internal val adapter = MergeAdapter()
-        internal val horizontalListAdapter = HorizontalListAdapter()
-        internal val verticalListAdapter = VerticalListAdapter()
+
         internal val bannerItemAdapter = BannerItemAdapter()
-        internal val gridListAdapter = GridListAdapter()
+        internal val horizontalListSectionAdapter = HorizontalListSectionAdapter()
+        internal val verticalListSectionAdapter = VerticalListSectionAdapter()
+        internal val gridListSectionAdapter = GridListSectionAdapter()
 
         init {
             adapter.addAdapter(bannerItemAdapter)
-            adapter.addAdapter(horizontalListAdapter)
-            adapter.addAdapter(verticalListAdapter)
-            adapter.addAdapter(gridListAdapter)
+            adapter.addAdapter(horizontalListSectionAdapter)
+            adapter.addAdapter(verticalListSectionAdapter)
+            adapter.addAdapter(gridListSectionAdapter)
 
             recyclerView.adapter = adapter
-            val layoutManager = GridLayoutManager(
+
+            val layoutManager = CustomGridLayoutManager(
                 view.context,
                 2
             )
-            layoutManager.spanSizeLookup = CustomSpanSizeLookup(adapter)
+            layoutManager.setSpanSizeLookup(adapter)
             recyclerView.layoutManager = layoutManager
         }
     }
