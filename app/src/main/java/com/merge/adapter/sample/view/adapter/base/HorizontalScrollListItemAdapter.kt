@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.merge.adapter.sample.R
 import com.merge.adapter.sample.view.adapter.base.BaseRecyclerViewAdapter.BaseVH
 import com.merge.adapter.sample.view.adapter.base.HorizontalScrollListItemAdapter.HorizontalRecyclerVH
 
@@ -16,18 +15,17 @@ abstract class HorizontalScrollListItemAdapter<T, K : BaseVH> :
 
     class HorizontalRecyclerVH<T, K : BaseVH>(
         parentAdapter: HorizontalScrollListItemAdapter<T, K>,
-        view: View) : BaseVH(view) {
+        view: RecyclerView) : BaseVH(view) {
 
         fun setListItems(items: MutableList<T>) {
             adapter.setData(items)
         }
 
-        private val recyclerView: RecyclerView = view.findViewById(R.id.horizontal_recycler_view_id)
         private var adapter = InternalListAdapter(parentAdapter)
 
         init {
-            recyclerView.adapter = InternalListAdapter(parentAdapter)
-            recyclerView.adapter = adapter
+            view.adapter = InternalListAdapter(parentAdapter)
+            view.adapter = adapter
         }
 
 
@@ -64,7 +62,6 @@ abstract class HorizontalScrollListItemAdapter<T, K : BaseVH> :
         viewType: Int
     ): HorizontalRecyclerVH<T, K> {
         val recyclerView = RecyclerView(parent.context)
-        recyclerView.id = R.id.horizontal_recycler_view_id
         recyclerView.layoutManager =
             LinearLayoutManager(parent.context, RecyclerView.HORIZONTAL, false)
         return createRecyclerViewHolder(recyclerView)

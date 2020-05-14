@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="horizontal_recycler_view_id" type="id"/>
-    <item name="header_with_children_section_list_id" type="id" />
-</resources>
