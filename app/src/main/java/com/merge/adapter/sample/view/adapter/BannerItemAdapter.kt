@@ -7,9 +7,9 @@ import com.bumptech.glide.Glide
 import com.merge.adapter.sample.R
 import com.merge.adapter.sample.model.data.ListItem
 import com.merge.adapter.sample.view.adapter.BannerItemAdapter.BannerItemAdapterVH
-import com.merge.adapter.sample.view.adapter.base.SingleItemAdapter
+import com.merge.adapter.sample.view.adapter.base.BaseSingleListItemAdapter
 
-class BannerItemAdapter : SingleItemAdapter<ListItem, BannerItemAdapterVH>() {
+class BannerItemAdapter : BaseSingleListItemAdapter<ListItem, BannerItemAdapterVH>() {
     override fun createViewHolder(view: View) : BannerItemAdapterVH {
         return BannerItemAdapterVH(view)
     }

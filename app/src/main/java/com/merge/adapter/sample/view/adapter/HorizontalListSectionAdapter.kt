@@ -4,9 +4,9 @@ import android.view.View
 import com.merge.adapter.sample.R
 import com.merge.adapter.sample.model.data.ListItem
 import com.merge.adapter.sample.model.data.TitleItem
-import com.merge.adapter.sample.view.adapter.base.HeaderWithChildrenSectionAdapter
+import com.merge.adapter.sample.view.adapter.base.BaseSectionAdapter
 
-class HorizontalListSectionAdapter : HeaderWithChildrenSectionAdapter<
+class HorizontalListSectionAdapter : BaseSectionAdapter<
         TitleItemAdapter,
         HorizontalListAdapter,
         HorizontalListSectionAdapter.HorizontalSectionVH>() {

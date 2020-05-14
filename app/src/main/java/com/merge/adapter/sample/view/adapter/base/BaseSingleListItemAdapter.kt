@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-abstract class SingleItemAdapter<T, K : BaseRecyclerViewAdapter.BaseVH> : BaseRecyclerViewAdapter<K>() {
+abstract class BaseSingleListItemAdapter<T, K : BaseRecyclerViewAdapter.BaseVH> : BaseRecyclerViewAdapter<K>() {
     private var item: T? = null
     override fun getSpanSize() = 1
     fun setItem(item : T) {

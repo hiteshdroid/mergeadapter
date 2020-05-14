@@ -4,9 +4,9 @@ import android.view.View
 import android.widget.TextView
 import com.merge.adapter.sample.R
 import com.merge.adapter.sample.model.data.TitleItem
-import com.merge.adapter.sample.view.adapter.base.SingleItemAdapter
+import com.merge.adapter.sample.view.adapter.base.BaseSingleListItemAdapter
 
-class TitleItemAdapter : SingleItemAdapter<TitleItem, TitleItemAdapter.TitleItemAdapterVH>() {
+class TitleItemAdapter : BaseSingleListItemAdapter<TitleItem, TitleItemAdapter.TitleItemAdapterVH>() {
     class TitleItemAdapterVH(view : View) : BaseVH(view){
         private val header = view.findViewById<TextView>(R.id.dummy_title)
         fun bindData(title: String) {

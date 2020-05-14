@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-abstract class ArrayItemAdapter<T, K : BaseRecyclerViewAdapter.BaseVH> :
+abstract class BaseVerticalListItemAdapter<T, K : BaseRecyclerViewAdapter.BaseVH> :
     BaseRecyclerViewAdapter<K>() {
 
     private var listArray : MutableList<T>? = null

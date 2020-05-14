@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.MergeAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.merge.adapter.sample.R
 import com.merge.adapter.sample.view.adapter.base.BaseRecyclerViewAdapter.BaseVH
-import com.merge.adapter.sample.view.adapter.base.HeaderWithChildrenSectionAdapter.SectionVH
+import com.merge.adapter.sample.view.adapter.base.BaseSectionAdapter.SectionVH
 import com.merge.adapter.sample.view.adapter.base.layoutmanager.CustomGridLayoutManager
 
-abstract class HeaderWithChildrenSectionAdapter<
+abstract class BaseSectionAdapter<
         HeaderAdapter : BaseRecyclerViewAdapter<out BaseVH>,
         ChildrenAdapter : BaseRecyclerViewAdapter<out BaseVH>,
         SectionViewHolder : SectionVH<HeaderAdapter, ChildrenAdapter>>

@@ -6,9 +6,9 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.merge.adapter.sample.R
 import com.merge.adapter.sample.model.data.ListItem
-import com.merge.adapter.sample.view.adapter.base.ArrayItemAdapter
+import com.merge.adapter.sample.view.adapter.base.BaseVerticalListItemAdapter
 
-class GridListAdapter : ArrayItemAdapter<ListItem, GridListAdapter.GridListAdapterVH>() {
+class GridListAdapter : BaseVerticalListItemAdapter<ListItem, GridListAdapter.GridListAdapterVH>() {
     class GridListAdapterVH(view : View) : BaseVH(view) {
         val title : TextView = view.findViewById(R.id.title)
         val desc : TextView = view.findViewById(R.id.desc)

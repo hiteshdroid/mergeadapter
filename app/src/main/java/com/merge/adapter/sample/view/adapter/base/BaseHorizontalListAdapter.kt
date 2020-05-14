@@ -5,16 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.merge.adapter.sample.view.adapter.base.BaseHorizontalListAdapter.HorizontalRecyclerVH
 import com.merge.adapter.sample.view.adapter.base.BaseRecyclerViewAdapter.BaseVH
-import com.merge.adapter.sample.view.adapter.base.HorizontalScrollListItemAdapter.HorizontalRecyclerVH
 
-abstract class HorizontalScrollListItemAdapter<T, K : BaseVH> :
+abstract class BaseHorizontalListAdapter<T, K : BaseVH> :
     BaseRecyclerViewAdapter<HorizontalRecyclerVH<T, K>>() {
 
     private lateinit var parentVH: HorizontalRecyclerVH<T, K>
 
     class HorizontalRecyclerVH<T, K : BaseVH>(
-        parentAdapter: HorizontalScrollListItemAdapter<T, K>,
+        parentAdapter: BaseHorizontalListAdapter<T, K>,
         view: RecyclerView) : BaseVH(view) {
 
         fun setListItems(items: MutableList<T>) {
@@ -29,7 +29,7 @@ abstract class HorizontalScrollListItemAdapter<T, K : BaseVH> :
         }
 
 
-        class InternalListAdapter<T, K : BaseVH>(private val parentAdapter: HorizontalScrollListItemAdapter<T, K>) :
+        class InternalListAdapter<T, K : BaseVH>(private val parentAdapter: BaseHorizontalListAdapter<T, K>) :
             RecyclerView.Adapter<K>() {
             private var list: MutableList<T>? = null
 
